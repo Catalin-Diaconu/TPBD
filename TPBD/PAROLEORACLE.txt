@@ -1,0 +1,59 @@
+CATALIN12
+CATALIN12
+TPBD
+catalin  parola la oracle si user SYS SYSTEM
+
+Siis1 la curs
+
+
+Anul3sql
+Anul3plsql
+
+
+
+
+update angajati set PRENUME='gheorghe',SPOR_P=6 where NUME='Vasile' ;
+
+
+
+in sqlplus: conn:
+
+TPBD la user 
+catalin   la user pw
+
+@D:/Desktop/TPBD/script.sql
+
+login cu SYS si catalin
+
+apoi cu TPBD si catalin( already have an account)
+
+
+DATA SOURCE=localhost:1521/XE;PASSWORD=catalin;PERSIST SECURITY INFO=True;USER ID=TPBD
+
+mutating tables error!!!
+
+
+create or replace trigger update_taxe
+after update of cas_p,cass_p,impozit_p ON taxe
+for each row
+declare
+casP INTEGER;
+cassP INTEGER;
+impozitP INTEGER;
+BEGIN 
+SELECT cas_p INTO casP from taxe;
+select cass_p INTO cassP from taxe;
+select impozit_p INTO impozitP from taxe;
+
+update angajati set total_brut = salar_baza*(1+spor_p/100)+premii_brute;
+update angajati set cas=total_brut*(casP/100);
+update angajati set cass=total_brut*(cassP/100);
+update angajati set brut_impozabil=total_brut - cas - cass;
+update angajati set impozit=brut_impozabil*(impozitP/100);
+update angajati set virat_card = total_brut - impozit - cas - cass - retineri;
+end;
+/
+
+
+
+nu am facut actualizare pt mai multi angajati dar am facut bonus cu hotkeys
